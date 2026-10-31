@@ -27,7 +27,7 @@ week-05/
     └── charts/ (4 PNG charts)
 ```
 
-To re-run the notebook, point `DATA_DIR` at a folder holding `sales_transactions.csv`, `inventory_position.csv` (both in the Week 2 folder) and `stock_ledger.csv` (Week 3 folder).
+To re-run the notebook, open it in Google Colab and run all cells. The first cell mounts Google Drive, and the notebook then reads `sales_transactions.csv` and `inventory_position.csv` from the project's `week-02/week-02/` folder and `stock_ledger.csv` from `week-3/` in Drive, and writes its outputs to `week-05/week-05/outputs/`.
 
 ## Ground rules
 
@@ -72,5 +72,6 @@ The recorded **reorder levels are also low**: 161 of 180 sit below demand during
 ## Caveats
 
 - **Scale flag.** All 180 positions carry the Week 3 `scale_mismatch_flag`: recorded stock is hundreds of times its max stock. The ledger shows how that stock built up (receipts far above sales), but the figures need confirming with a physical count and the purchase-order records before action is taken.
+- **Reconciliation (31 Oct 2026).** The scale flag was traced through the purchasing and ledger data and is not a unit error. Received purchase orders (22.4 million units) and ledger receipts (20.4 million units) agree to within about 9%, and recorded stock is consistent with both, so the mismatch sits between purchasing and stock on one side and the sales and policy fields (max stock, reorder level) on the other. Stock-based figures stay as recorded.
 - **FIFO is an assumption** about how stock is picked. The FIFO stock equals the last ledger balance in 174 of 180 positions (total 19,305,994 vs 19,304,792 units, a 0.006% difference) and equals `current_stock` in 166 positions, matching the 166-of-180 finding from Week 3.
 - 2025 covers only 1–28 January, so its receipt-to-sales ratio is not comparable with full years.
